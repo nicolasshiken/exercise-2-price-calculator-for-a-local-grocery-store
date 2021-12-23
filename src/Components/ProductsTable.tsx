@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import {
   getDiscountedPriceForSingleProduct,
-  truncateNumber
+  truncateNumber,
 } from "../Utils/functions";
 import { IAddedProduct } from "../Utils/types";
 
@@ -30,6 +30,7 @@ export const ProductsTable: FC<IProductsTable> = ({ productsList }) => {
                   <td>${product.price}</td>
                   <td>{quantity}</td>
                   <td>
+                    $
                     {truncateNumber(
                       getDiscountedPriceForSingleProduct({ quantity, product })
                     )}

@@ -8,13 +8,13 @@ interface IProductDetails {
 
 export const ProductsDetails: FC<IProductDetails> = ({
   totalPriceWithDiscount,
-  totalPriceWithoutDiscount
+  totalPriceWithoutDiscount,
 }) => {
-  const truncatedTotalPriceWithoutDiscount = truncateNumber(
-    totalPriceWithoutDiscount
+  const truncatedTotalPriceWithoutDiscount = parseFloat(
+    truncateNumber(totalPriceWithoutDiscount)
   );
-  const truncatedTotalPriceWithDiscount = truncateNumber(
-    totalPriceWithDiscount
+  const truncatedTotalPriceWithDiscount = parseFloat(
+    truncateNumber(totalPriceWithDiscount)
   );
   const saved = truncateNumber(
     truncatedTotalPriceWithoutDiscount - truncatedTotalPriceWithDiscount

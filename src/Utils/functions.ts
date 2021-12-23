@@ -1,6 +1,6 @@
 import { IAddedProduct } from "./types";
 
-export const truncateNumber = (num) => {
+export const truncateNumber = (num): string => {
   var re = new RegExp("^-?\\d+(?:.\\d{0," + (2 || -1) + "})?");
   return num.toString().match(re)[0];
 };
@@ -17,7 +17,7 @@ export const getTotalPrice = (productList: IAddedProduct[]) => {
 
 export const getDiscountedPriceForSingleProduct = ({
   product,
-  quantity
+  quantity,
 }: IAddedProduct) => {
   if (product.isOnSale && quantity >= product.quantityRequiredForSale) {
     const salesPrice =

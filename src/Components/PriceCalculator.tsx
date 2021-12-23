@@ -9,14 +9,12 @@ export const PriceCalculator: FC = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
   const [addedProducts, setAddedProducts] = useState<IAddedProduct[]>([]);
-  const [totalPriceWithoutDiscount, setTotalPriceWithoutDiscount] = useState<
-    number
-  >(0);
-  const [totalPriceWithDiscount, setTotalPriceWithDiscount] = useState<number>(
-    0
-  );
+  const [totalPriceWithoutDiscount, setTotalPriceWithoutDiscount] =
+    useState<number>(0);
+  const [totalPriceWithDiscount, setTotalPriceWithDiscount] =
+    useState<number>(0);
 
-  const handleProductAdd = (e) => {
+  const handleProductAdd = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (inputValue.length > 0) {
       const product = PRODUCTS.find((product) => product.name === inputValue);
@@ -31,7 +29,7 @@ export const PriceCalculator: FC = () => {
         const newAddedProducts = addedProducts.slice();
         newAddedProducts[productIndex] = {
           ...newAddedProducts[productIndex],
-          quantity: newAddedProducts[productIndex].quantity + 1
+          quantity: newAddedProducts[productIndex].quantity + 1,
         };
         setAddedProducts(newAddedProducts);
       } else {
@@ -43,14 +41,14 @@ export const PriceCalculator: FC = () => {
     }
   };
 
-  const handleFinishShopping = (e) => {
+  const handleFinishShopping = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setSubmitted(true);
     setTotalPriceWithDiscount(getDiscountedPrice(addedProducts));
     setTotalPriceWithoutDiscount(getTotalPrice(addedProducts));
   };
 
-  const handleReset = (e) => {
+  const handleReset = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setSubmitted(false);
     setInputValue("");
